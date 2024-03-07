@@ -1,6 +1,6 @@
 export interface Beans {
   beanId: number
-  name: string
+  flavorName: string
   imageUrl: string
   description: string
 }
