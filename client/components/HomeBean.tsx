@@ -26,7 +26,7 @@ export function HomeBean() {
     return (
       <>
         <p>Time flies when you&apos;re bean productive.</p>
-        <button onClick={handleClick}>
+        <button>
           <Link to="quiz">
             <img
               src={chosenBean.imageUrl}
