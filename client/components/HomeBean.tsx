@@ -10,8 +10,6 @@ export function HomeBean() {
   })
   console.log(data)
 
-  function handleClick() {}
-
   if (isLoading) {
     return <p>Load</p>
   }
@@ -25,7 +23,7 @@ export function HomeBean() {
     return (
       <>
         <p>Time flies when you&apos;re bean productive.</p>
-        <button onClick={handleClick}>
+        <button>
           <Link to="quiz">
             <img
               src={chosenBean.imageUrl}
