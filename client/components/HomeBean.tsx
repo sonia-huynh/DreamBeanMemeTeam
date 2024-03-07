@@ -2,6 +2,7 @@ import { useQuery } from '@tanstack/react-query'
 import { fetchJellyBean } from '../apis/jellybean'
 import { getRandomNumber } from '../modules/random-number'
 import { Link } from 'react-router-dom'
+import LoadingSpinner from './LoadingSpinner'
 
 export function HomeBean() {
   const { data, isLoading, isError, error } = useQuery({
@@ -12,8 +13,8 @@ export function HomeBean() {
 
   function handleClick() {}
 
-  if (isLoading) {
-    return <p>Load</p>
+  if (isLoading){
+    return <LoadingSpinner/>
   }
 
   if (isError) {
