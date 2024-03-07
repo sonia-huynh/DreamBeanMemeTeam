@@ -4,3 +4,7 @@ export interface Beans {
   imageUrl: string
   description: string
 }
+
+export interface BeanList {
+  items: Beans[]
+}
