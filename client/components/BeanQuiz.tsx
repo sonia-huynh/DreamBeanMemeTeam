@@ -3,12 +3,15 @@ import { fetchJellyBean } from '../apis/jellybean'
 import { getRandomNumber } from '../modules/random-number'
 import { useState } from 'react'
 import LoadingSpinner from './LoadingSpinner'
+import { puns } from './BeanPuns'
+import { Link } from 'react-router-dom'
 
 export function BeanQuiz() {
-  let beans = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
-  let beanOptions = []
+  const beans = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+  const beanOptions = []
   const [result, setResult] = useState('')
-  const out = ['1', '2', '3', '4', '5', '6']
+  const [score, setScore] = useState(0)
+  const [game, setGame] = useState(true)
 
   for (let i = 0; i < 4; i++) {
     const j = getRandomNumber(0, beans.length - 1)
@@ -31,18 +34,11 @@ export function BeanQuiz() {
   }
 
   function rightBean() {
-    console.log('right bean')
-    setResult('')
-    setResult(out[getRandomNumber(0, 5)])
-    beans = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
-    beanOptions = []
+    setResult(puns[getRandomNumber(0, puns.length - 1)])
+    setScore(score + 1)
   }
   function wrongBean() {
-    console.log('wrong bean')
-    setResult('')
-    setResult(out[getRandomNumber(0, 5)])
-    beans = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
-    beanOptions = []
+    setGame(false)
   }
 
   function handleClick(chosen, actual) {
@@ -53,26 +49,58 @@ export function BeanQuiz() {
     const chosenBeanName =
       data.items[beanOptions[getRandomNumber(0, 3)]].flavorName
 
-    return (
-      <>
-        <h2>{chosenBeanName}</h2>
-        <div className="image-container">
-          {beanOptions.map((bean) => (
-            <button
-              onClick={() => {
-                handleClick(data.items[bean].flavorName, chosenBeanName)
-              }}
-              key={data.items[bean].beanId}
-            >
+    if (game) {
+      return (
+        <>
+          <Link to="/">
+            <button>
               <img
-                src={data.items[bean].imageUrl}
-                alt={data.items[bean].flavorName}
+                src="../../public/images/homeJelly.png"
+                alt="Red home jelly bean"
               />
             </button>
-          ))}
-        </div>
-        <p>{result}</p>
-      </>
-    )
+          </Link>
+          <h2>{chosenBeanName}</h2>
+          <div className="image-container">
+            {beanOptions.map((bean) => (
+              <button
+                onClick={() => {
+                  handleClick(data.items[bean].flavorName, chosenBeanName)
+                }}
+                key={data.items[bean].beanId}
+              >
+                <img
+                  src={data.items[bean].imageUrl}
+                  alt={data.items[bean].flavorName}
+                />
+              </button>
+            ))}
+          </div>
+          <p>{result}</p>
+        </>
+      )
+    } else {
+      return (
+        <>
+          <p>Lucas ate {score} Jellybeans</p>
+          <button
+            onClick={() => {
+              setGame(true)
+              setScore(0)
+            }}
+          >
+            <img src="../../public/images/Lucas.png" alt="Zaks mouse Lucas" />
+          </button>
+          <Link to="/">
+            <button>
+              <img
+                src="../../public/images/homeJelly.png"
+                alt="Red home jelly bean"
+              />
+            </button>
+          </Link>
+        </>
+      )
+    }
   }
 }
