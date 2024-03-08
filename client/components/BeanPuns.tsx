@@ -9,4 +9,5 @@ export const puns = [
   'Beantastic',
   'Beanbag',
   'That’s right-Beana',
+  'Cool beans',
 ]

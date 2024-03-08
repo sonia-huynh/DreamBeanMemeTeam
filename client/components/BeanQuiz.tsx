@@ -5,6 +5,7 @@ import { useState } from 'react'
 import LoadingSpinner from './LoadingSpinner'
 import { puns } from './BeanPuns'
 import { Link } from 'react-router-dom'
+import pop from '../../public/images/pop.mp3'
 
 export function BeanQuiz() {
   const beans = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
@@ -43,6 +44,8 @@ export function BeanQuiz() {
 
   function handleClick(chosen, actual) {
     chosen === actual ? rightBean() : wrongBean()
+    const sound = new Audio(pop)
+    sound.play()
   }
 
   if (data) {
