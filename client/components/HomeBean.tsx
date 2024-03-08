@@ -23,7 +23,7 @@ export function HomeBean() {
     const chosenBean = data.items[getRandomNumber(0, 9)]
     return (
       <>
-        <p>Time flies when you&apos;re bean productive.</p>
+        <h1>DREAM BEAN MEME TEAM</h1>
         <button>
           <Link to="quiz">
             <img

@@ -3,7 +3,7 @@ import { Outlet } from 'react-router-dom'
 function App() {
   return (
     <div>
-      <h1>DREAM BEAN MEME TEAM</h1>
+      {/* <h1>DREAM BEAN MEME TEAM</h1> */}
       <Outlet />
     </div>
   )

@@ -53,14 +53,15 @@ export function BeanQuiz() {
       return (
         <>
           <Link to="/">
-            <button>
+            <button className="homeButton">
               <img
+                className="homeImage"
                 src="../../public/images/homeJelly.png"
                 alt="Red home jelly bean"
               />
             </button>
           </Link>
-          <h2>{chosenBeanName}</h2>
+          <h1 className="chosen">{chosenBeanName}</h1>
           <div className="image-container">
             {beanOptions.map((bean) => (
               <button
@@ -76,13 +77,13 @@ export function BeanQuiz() {
               </button>
             ))}
           </div>
-          <p>{result}</p>
+          <h1>{result}</h1>
         </>
       )
     } else {
       return (
         <>
-          <p>Lucas ate {score} Jellybeans</p>
+          <h1 className="lucas">Lucas ate {score} Jellybeans</h1>
           <button
             onClick={() => {
               setGame(true)
@@ -92,8 +93,9 @@ export function BeanQuiz() {
             <img src="../../public/images/Lucas.png" alt="Zaks mouse Lucas" />
           </button>
           <Link to="/">
-            <button>
+            <button className="homeButton">
               <img
+                className="homeImage"
                 src="../../public/images/homeJelly.png"
                 alt="Red home jelly bean"
               />
