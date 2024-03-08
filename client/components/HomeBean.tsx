@@ -16,7 +16,7 @@ export function HomeBean() {
   }
 
   if (isError) {
-    return <p>Error, u stupid: {error.message}</p>
+    return <p>Error: {error.message}</p>
   }
 
   if (data) {
