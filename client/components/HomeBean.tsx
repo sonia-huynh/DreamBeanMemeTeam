@@ -11,10 +11,8 @@ export function HomeBean() {
   })
   console.log(data)
 
-  function handleClick() {}
-
-  if (isLoading){
-    return <LoadingSpinner/>
+  if (isLoading) {
+    return <LoadingSpinner />
   }
 
   if (isError) {
