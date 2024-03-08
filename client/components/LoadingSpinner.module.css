@@ -1,8 +1,9 @@
 .loading {
-    width: 400px;
     animation: warp 1.5s;
     animation-iteration-count: infinite;
     animation-timing-function: ease;
+    border-radius: 20px;
+    margin: 50px;
   }
   
   @keyframes warp {
@@ -18,3 +19,4 @@
   }
   
   
+
