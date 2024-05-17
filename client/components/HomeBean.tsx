@@ -33,6 +33,9 @@ export function HomeBean() {
           </Link>
         </button>
         <h2>Click the Bean</h2>
+        <Link to="harder-bean-quiz">
+          <button>Try Hard mode</button>
+        </Link>
       </>
     )
   }
