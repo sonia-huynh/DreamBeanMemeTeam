@@ -1,26 +1,25 @@
-# Phase 1 Boilerplate
+![bean](https://m.media-amazon.com/images/S/al-na-9d5791cf-3faf/62d5775d-1b2d-4eae-8aa6-1512de44519f._CR0%2C0%2C1500%2C300_SX1500_.jpg)
 
-## Packages Included
+# DreamBeanMemeTeam 
 
-- react
-- react-router-dom
-- @tanstack/react-query
-- vite
-- vitest
-- eslint
+During my bootcamp, we had Friday Group Projects where we create a one-day project together as a team of four people. This Friday Group Project's focus was to build an app using an external api, so my team and I created a fun trivia game using the Jelly Belly Api where we randomised the names of the jelly beans and their jelly bean image so the player has to guess which jelly bean image corresponds to the given jelly bean name. 
 
-## Setup
+### Languages, Tools & Technologies:
+* React
+* Typescript
+* CSS 
+* Jelly Belly api
 
-- [ ] Clone this repo, navigate to it, install packages, and start the server with `npm run dev`
-  <details style="padding-left: 2em">
-    <summary>Tip</summary>
+### MVP: 
+* Correcly access the Jelly Belly API to display the jelly bean name and image
+* Generate a random jelly bean name and four jelly bean images with one being the correct answer
+* Correctly score the player when they get the answer correct
 
-    ```sh
-    npm install
-    npm run dev
-    ```
-  </details>
+### Stretch Goals:
+* ✔️ Create a loading jelly bean spinner
+* ✔️ Create a home page that leads to the game
+* ✔️ Create an ending score
+* ✔️ Have a pop audio when the player clicks on the answer buttons
 
----
-
-[Provide feedback on this repo](https://docs.google.com/forms/d/e/1FAIpQLSfw4FGdWkLwMLlUaNQ8FtP2CTJdGDUv6Xoxrh19zIrJSkvT4Q/viewform?usp=pp_url&entry.1958421517=boilerplate-phase1)
+### Future Editing Goal:
+* Generate more than 10 jelly beans for the game as the API default only generates 10 jelly beans
