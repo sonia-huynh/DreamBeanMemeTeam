@@ -21,5 +21,6 @@ During my bootcamp, we had Friday Group Projects where we create a one-day proje
 * ✔️ Create an ending score
 * ✔️ Have a pop audio when the player clicks on the answer buttons
 
-### Future Editing Goal:
-* Generate more than 10 jelly beans for the game as the API default only generates 10 jelly beans
+### Current Editing Goal:
+* Create hard mode which accesses more than 10 possible jelly beans for the game as the API default only generates 10 jelly beans
+
