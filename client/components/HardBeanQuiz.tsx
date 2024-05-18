@@ -2,16 +2,22 @@ import { useQuery } from '@tanstack/react-query'
 import { fetchAllJellyBeans } from '../apis/jellybean'
 import LoadingSpinner from './LoadingSpinner'
 import { getRandomNumber } from '../modules/random-number'
+import { Link } from 'react-router-dom'
+import { useState } from 'react'
+import { BeanList, Beans } from '../../models/BeanModel'
 
 export function HardBeanQuiz() {
+  // set game state
+  const [game, setGame] = useState(true)
+  const [result, setResult] = useState('')
+  const [score, setScore] = useState(0)
   // bean option length array
   // maps through the length and inserts the index as a number in the array
-  let numberArr = []
+  const numberArr: number[] = []
   for (let i = 0; i < 115; i++) {
     const item = i
     numberArr.push(item)
   }
-  const quizBeanArr = []
 
   // Custom hook
   const { data, isLoading, isError, error } = useQuery({
@@ -27,41 +33,118 @@ export function HardBeanQuiz() {
     return <p>Error: {error.message}</p>
   }
 
-  // set up four random bean images
-  for (let i = 0; i < 4; i++) {
-    const beanNumber = getRandomNumber(0, numberArr.length - 1)
-    // console.log({ number: beanNumber })
-    const filt: number[] = numberArr.filter((num: number) => num != beanNumber)
-    // filters the beanNumber out to remove it from the array and prevent repitition
-    numberArr = filt
-    // sets numberArr as filt which is the array without the picked numbers
-    // console.log(numberArr)
-    quizBeanArr.push(data?.items[beanNumber])
+  // set up four random bean images using splice/filter/find
+  // filters the beanNumber out to remove it from the array and prevent repitition
+  // sets numberArr as filt which is the array without the picked numbers
+  // for (let i = 0; i < 4; i++) {
+  //   const beanNumber = getRandomNumber(0, numberArr.length - 1)
+  //   console.log({ number: beanNumber })
+  //   if (numberArr.find((num: number) => num === beanNumber)) {
+  //     const filt: number[] = numberArr.filter(
+  //       (num: number) => num != beanNumber
+  //     )
+  //     quizBeanArr.push(data?.items[beanNumber])
+  //     numberArr = filt
+  //   } else {
+  //     getRandomNumber(0, numberArr.length - 1)
+  //   }
+  //   console.log(numberArr)
+  // }
+  // console.log(quizBeanArr)
+
+  // shuffle method to randomise array
+  const shuffle = (array: number[]) => {
+    for (let i = array.length - 1; i > 0; i--) {
+      const randomI = getRandomNumber(0, i)
+      ;[array[i], array[randomI]] = [array[randomI], array[i]]
+    }
+    return array
   }
+  const shuffledArr = shuffle(numberArr)
+
+  // pick 4 random numbers
+  const beanArr: Beans[] = []
+  const pickBeans = (arr: number[]) => {
+    for (let i = 0; i < 4; i++) {
+      const beanNum = Number(arr.pop())
+      const bean = data?.items[beanNum]
+      // console.log(bean)
+      beanArr.push(bean)
+      if (bean === undefined) {
+        const newBean = Number(arr.pop())
+        const bean = data?.items[newBean]
+        beanArr.push(bean)
+      }
+    }
+    return beanArr
+  }
+
+  const quizBeanArr = pickBeans(shuffledArr)
   console.log(quizBeanArr)
 
   // set up the chosen bean
-  const theBean = []
   const chosenNum = getRandomNumber(0, quizBeanArr.length - 1)
-  const chosenBean = quizBeanArr[chosenNum]?.flavorName
-  theBean.push(chosenBean)
-  // console.log(theBean)
+  const chosenBean = quizBeanArr[chosenNum]
+  const chosenBeanName = chosenBean?.flavorName
+  // console.log(chosenBean?.imageUrl)
+  console.log(score)
 
-  // function handleCorrect(){
-  //   if()
-  // }
+  function handleClick(bean: Beans) {
+    console.log(bean.imageUrl)
+    if (bean.imageUrl === chosenBean?.imageUrl) {
+      setGame(true)
+      setScore((prev) => prev + 1)
+      console.log(score)
+    } else {
+      setGame(false)
+    }
+  }
 
-  return (
-    <>
-      <h1>WOW SO HARD</h1>
-      <h1>{theBean}</h1>
-      <div>
-        {quizBeanArr.map((bean, i) => (
-          <button key={i}>
-            <img src={bean?.imageUrl} alt={bean?.flavorName} />
+  if (game === true) {
+    return (
+      <>
+        <Link to="/">
+          <button className="homeButton">
+            <img
+              className="homeImage"
+              src="../../public/images/homeJelly.png"
+              alt="Red home jelly bean"
+            />
           </button>
-        ))}
-      </div>
-    </>
-  )
+        </Link>
+        <h1>WOW SO HARD</h1>
+        <h1 className="chosen">{chosenBeanName}</h1>
+        <div className="image-container">
+          {quizBeanArr.map((bean, i) => (
+            <button key={i} onClick={() => handleClick(bean)}>
+              <img src={bean?.imageUrl} alt={bean?.flavorName} />
+            </button>
+          ))}
+        </div>
+      </>
+    )
+  } else {
+    return (
+      <>
+        <h1 className="lucas">Lucas ate {score} Jellybeans</h1>
+        <button
+          onClick={() => {
+            setGame(true)
+            setScore(0)
+          }}
+        >
+          <img src="../../public/images/Lucas.png" alt="replay button" />
+        </button>
+        <Link to="/">
+          <button className="homeButton">
+            <img
+              className="homeImage"
+              src="../../public/images/homeJelly.png"
+              alt="Red home jelly bean"
+            />
+          </button>
+        </Link>
+      </>
+    )
+  }
 }
