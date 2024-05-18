@@ -6,7 +6,11 @@ import { getRandomNumber } from '../modules/random-number'
 export function HardBeanQuiz() {
   // bean option length array
   // maps through the length and inserts the index as a number in the array
-  const numberArr = Array.from({ length: 114 }, (_, i) => i + 1)
+  let numberArr = []
+  for (let i = 0; i < 115; i++) {
+    const item = i
+    numberArr.push(item)
+  }
   const quizBeanArr = []
 
   // Custom hook
@@ -25,21 +29,27 @@ export function HardBeanQuiz() {
 
   // set up four random bean images
   for (let i = 0; i < 4; i++) {
-    const number = getRandomNumber(0, numberArr.length - 1)
-    const bean = data?.items[number].imageUrl
-    numberArr.splice(number, 1)[0]
-    // splices the randomNumber to remove it from the array and prevent repitition
-    quizBeanArr.push(bean)
-    console.log({ number: number })
+    const beanNumber = getRandomNumber(0, numberArr.length - 1)
+    // console.log({ number: beanNumber })
+    const filt: number[] = numberArr.filter((num: number) => num != beanNumber)
+    // filters the beanNumber out to remove it from the array and prevent repitition
+    numberArr = filt
+    // sets numberArr as filt which is the array without the picked numbers
+    // console.log(numberArr)
+    quizBeanArr.push(data?.items[beanNumber])
   }
   console.log(quizBeanArr)
 
   // set up the chosen bean
   const theBean = []
   const chosenNum = getRandomNumber(0, quizBeanArr.length - 1)
-  const chosenBean = data?.items[chosenNum].flavorName
+  const chosenBean = quizBeanArr[chosenNum]?.flavorName
   theBean.push(chosenBean)
-  console.log(theBean)
+  // console.log(theBean)
+
+  // function handleCorrect(){
+  //   if()
+  // }
 
   return (
     <>
@@ -48,7 +58,7 @@ export function HardBeanQuiz() {
       <div>
         {quizBeanArr.map((bean, i) => (
           <button key={i}>
-            <img src={bean} alt="some jelly bean" />
+            <img src={bean?.imageUrl} alt={bean?.flavorName} />
           </button>
         ))}
       </div>
