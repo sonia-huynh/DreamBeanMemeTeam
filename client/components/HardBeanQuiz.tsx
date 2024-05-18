@@ -35,11 +35,16 @@ export function HardBeanQuiz() {
   console.log(quizBeanArr)
 
   // set up the chosen bean
+  const theBean = []
+  const chosenNum = getRandomNumber(0, quizBeanArr.length - 1)
+  const chosenBean = data?.items[chosenNum].flavorName
+  theBean.push(chosenBean)
+  console.log(theBean)
 
   return (
     <>
       <h1>WOW SO HARD</h1>
-      <h1>{}</h1>
+      <h1>{theBean}</h1>
       <div>
         {quizBeanArr.map((bean, i) => (
           <button key={i}>
