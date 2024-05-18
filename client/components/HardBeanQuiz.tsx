@@ -133,7 +133,7 @@ export function HardBeanQuiz() {
         </button>
         <h1>Click to replay!</h1>
         <Link to="/">
-          <button className="homeButton">
+          <button className="homeButton" onClick={() => homebean.play()}>
             <img
               className="homeImage"
               src="../../public/images/homeJelly.png"
