@@ -14,3 +14,12 @@ export async function fetchJellyBean() {
 //   )
 //   return res.body as Beans
 // }
+
+// Fetch all possible jelly beans
+export async function fetchAllJellyBeans() {
+  const res = await request.get(
+    `https://jellybellywikiapi.onrender.com/api/Beans?pageSize=114`
+  )
+  // console.log(res.body)
+  return res.body as BeanList
+}
