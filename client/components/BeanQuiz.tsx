@@ -5,7 +5,9 @@ import { useState } from 'react'
 import LoadingSpinner from './LoadingSpinner'
 import { puns } from './BeanPuns'
 import { Link } from 'react-router-dom'
+import squeak from '../../public/images/squeak.mp3'
 import pop from '../../public/images/pop.mp3'
+import home from '../../public/images/homebean.mp3'
 
 export function BeanQuiz() {
   const beans = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
@@ -13,6 +15,8 @@ export function BeanQuiz() {
   const [result, setResult] = useState('')
   const [score, setScore] = useState(0)
   const [game, setGame] = useState(true)
+  const replay = new Audio(squeak)
+  const homebean = new Audio(home)
 
   for (let i = 0; i < 4; i++) {
     const j = getRandomNumber(0, beans.length - 1)
@@ -56,7 +60,7 @@ export function BeanQuiz() {
       return (
         <>
           <Link to="/">
-            <button className="homeButton">
+            <button className="homeButton" onClick={() => homebean.play()}>
               <img
                 className="homeImage"
                 src="../../public/images/homeJelly.png"
@@ -89,6 +93,7 @@ export function BeanQuiz() {
           <h1 className="lucas">Lucas ate {score} Jellybeans</h1>
           <button
             onClick={() => {
+              replay.play()
               setGame(true)
               setScore(0)
             }}
@@ -96,7 +101,7 @@ export function BeanQuiz() {
             <img src="../../public/images/Lucas.png" alt="Zaks mouse Lucas" />
           </button>
           <Link to="/">
-            <button className="homeButton">
+            <button className="homeButton" onClick={() => homebean.play()}>
               <img
                 className="homeImage"
                 src="../../public/images/homeJelly.png"

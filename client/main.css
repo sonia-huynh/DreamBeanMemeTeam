@@ -67,6 +67,20 @@ button:hover {
   border-radius: 0;
 }
 
+#hardModeButton {
+  font-size: 16pt;
+  color: #fc3682e7;
+  font-family: 'Concert One', sans-serif;
+  border-radius: 15px;
+  padding: 10px;
+}
+
+#hardModeButton:hover {
+  border-radius: 20px;
+  border: 4px rgba(43, 43, 43, 0.3) solid;
+  background-color: #ffdddde7;
+}
+
 .homeImage {
   height: 15vh;
   width: auto;

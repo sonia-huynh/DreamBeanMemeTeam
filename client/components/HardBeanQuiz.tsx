@@ -4,15 +4,22 @@ import LoadingSpinner from './LoadingSpinner'
 import { getRandomNumber } from '../modules/random-number'
 import { Link } from 'react-router-dom'
 import { useState } from 'react'
-import { BeanList, Beans } from '../../models/BeanModel'
+import { Beans } from '../../models/BeanModel'
 import { puns } from './BeanPuns'
 import pop from '../../public/images/pop.mp3'
+import home from '../../public/images/homebean.mp3'
+import squeak from '../../public/images/squeak.mp3'
 
 export function HardBeanQuiz() {
   // set game state
   const [game, setGame] = useState(true)
   const [result, setResult] = useState('')
   const [score, setScore] = useState(0)
+
+  //audio
+  const sound = new Audio(pop)
+  const homebean = new Audio(home)
+  const replay = new Audio(squeak)
 
   // bean option length array
   // maps through the length and inserts the index as a number in the array
@@ -94,6 +101,7 @@ export function HardBeanQuiz() {
   console.log(score)
 
   function handleClick(bean: Beans) {
+    sound.play()
     console.log(bean.imageUrl)
     if (bean.imageUrl === chosenBean?.imageUrl) {
       setResult(puns[getRandomNumber(0, puns.length - 1)])
@@ -110,7 +118,7 @@ export function HardBeanQuiz() {
       <>
         <h1 className="hardmode">WOW, SO HARD!!!</h1>
         <Link to="/">
-          <button className="homeButton">
+          <button className="homeButton" onClick={() => homebean.play()}>
             <img
               className="homeImage"
               src="../../public/images/homeJelly.png"
@@ -135,6 +143,7 @@ export function HardBeanQuiz() {
         <h1 className="lucas">Lucas ate {score} Jellybeans</h1>
         <button
           onClick={() => {
+            replay.play()
             setGame(true)
             setScore(0)
           }}

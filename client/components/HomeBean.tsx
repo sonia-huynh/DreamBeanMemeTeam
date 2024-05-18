@@ -2,9 +2,13 @@ import { useQuery } from '@tanstack/react-query'
 import { fetchAllJellyBeans, fetchJellyBean } from '../apis/jellybean'
 import { getRandomNumber } from '../modules/random-number'
 import { Link } from 'react-router-dom'
+import play from '../../public/images/start.mp3'
 import LoadingSpinner from './LoadingSpinner'
+import wow from '../../public/images/wow.mp3'
 
 export function HomeBean() {
+  const hardmode = new Audio(wow)
+  const start = new Audio(play)
   // const { data, isLoading, isError, error } = useQuery({
   //   queryKey: ['bean'],
   //   queryFn: () => fetchJellyBean(),
@@ -29,7 +33,7 @@ export function HomeBean() {
     return (
       <>
         <h1>DREAM BEAN MEME TEAM</h1>
-        <button>
+        <button onClick={() => start.play()}>
           <Link to="quiz">
             <img
               src={chosenBean.imageUrl}
@@ -39,7 +43,9 @@ export function HomeBean() {
         </button>
         <h2>Click the Bean</h2>
         <Link to="harder-bean-quiz">
-          <button>Try Hard mode</button>
+          <button id="hardModeButton" onClick={() => hardmode.play()}>
+            Try Hard Mode
+          </button>
         </Link>
       </>
     )
