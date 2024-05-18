@@ -1,15 +1,20 @@
 import { useQuery } from '@tanstack/react-query'
-import { fetchJellyBean } from '../apis/jellybean'
+import { fetchAllJellyBeans, fetchJellyBean } from '../apis/jellybean'
 import { getRandomNumber } from '../modules/random-number'
 import { Link } from 'react-router-dom'
 import LoadingSpinner from './LoadingSpinner'
 
 export function HomeBean() {
+  // const { data, isLoading, isError, error } = useQuery({
+  //   queryKey: ['bean'],
+  //   queryFn: () => fetchJellyBean(),
+  // })
+  // console.log(data)
+
   const { data, isLoading, isError, error } = useQuery({
-    queryKey: ['bean'],
-    queryFn: () => fetchJellyBean(),
+    queryKey: ['allBeans'],
+    queryFn: () => fetchAllJellyBeans(),
   })
-  console.log(data)
 
   if (isLoading) {
     return <LoadingSpinner />
@@ -20,7 +25,7 @@ export function HomeBean() {
   }
 
   if (data) {
-    const chosenBean = data.items[getRandomNumber(0, 9)]
+    const chosenBean = data.items[getRandomNumber(0, 115)]
     return (
       <>
         <h1>DREAM BEAN MEME TEAM</h1>
