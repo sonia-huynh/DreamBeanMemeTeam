@@ -22,7 +22,6 @@ export function HardBeanQuiz() {
   const replay = new Audio(squeak)
 
   // bean option length array
-  // maps through the length and inserts the index as a number in the array
   const numberArr: number[] = []
   for (let i = 0; i < 115; i++) {
     const item = i
@@ -42,25 +41,6 @@ export function HardBeanQuiz() {
   if (isError) {
     return <p>Error: {error.message}</p>
   }
-
-  // set up four random bean images using splice/filter/find
-  // filters the beanNumber out to remove it from the array and prevent repitition
-  // sets numberArr as filt which is the array without the picked numbers
-  // for (let i = 0; i < 4; i++) {
-  //   const beanNumber = getRandomNumber(0, numberArr.length - 1)
-  //   console.log({ number: beanNumber })
-  //   if (numberArr.find((num: number) => num === beanNumber)) {
-  //     const filt: number[] = numberArr.filter(
-  //       (num: number) => num != beanNumber
-  //     )
-  //     quizBeanArr.push(data?.items[beanNumber])
-  //     numberArr = filt
-  //   } else {
-  //     getRandomNumber(0, numberArr.length - 1)
-  //   }
-  //   console.log(numberArr)
-  // }
-  // console.log(quizBeanArr)
 
   // shuffle method to randomise array
   const shuffle = (array: number[]) => {
@@ -100,6 +80,7 @@ export function HardBeanQuiz() {
   // console.log(chosenBean?.imageUrl)
   console.log(score)
 
+  // handle what happens if bean correct or wrong
   function handleClick(bean: Beans) {
     sound.play()
     console.log(bean.imageUrl)
@@ -150,6 +131,7 @@ export function HardBeanQuiz() {
         >
           <img src="../../public/images/Lucas.png" alt="replay button" />
         </button>
+        <h1>Click to replay!</h1>
         <Link to="/">
           <button className="homeButton">
             <img

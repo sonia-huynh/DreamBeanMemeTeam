@@ -98,8 +98,9 @@ export function BeanQuiz() {
               setScore(0)
             }}
           >
-            <img src="../../public/images/Lucas.png" alt="Zaks mouse Lucas" />
+            <img src="../../public/images/Lucas.png" alt="replay button" />
           </button>
+          <h1>Click to replay!</h1>
           <Link to="/">
             <button className="homeButton" onClick={() => homebean.play()}>
               <img
