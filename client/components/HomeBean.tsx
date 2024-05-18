@@ -37,7 +37,7 @@ export function HomeBean() {
           <Link to="quiz">
             <img
               src={chosenBean.imageUrl}
-              alt={'bean is ' + chosenBean.flavorName}
+              alt={'Click to play, the jelly bean is ' + chosenBean.flavorName}
             />
           </Link>
         </button>
