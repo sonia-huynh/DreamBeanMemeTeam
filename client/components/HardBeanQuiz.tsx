@@ -5,12 +5,15 @@ import { getRandomNumber } from '../modules/random-number'
 import { Link } from 'react-router-dom'
 import { useState } from 'react'
 import { BeanList, Beans } from '../../models/BeanModel'
+import { puns } from './BeanPuns'
+import pop from '../../public/images/pop.mp3'
 
 export function HardBeanQuiz() {
   // set game state
   const [game, setGame] = useState(true)
   const [result, setResult] = useState('')
   const [score, setScore] = useState(0)
+
   // bean option length array
   // maps through the length and inserts the index as a number in the array
   const numberArr: number[] = []
@@ -71,6 +74,7 @@ export function HardBeanQuiz() {
       // console.log(bean)
       beanArr.push(bean)
       if (bean === undefined) {
+        beanArr.pop()
         const newBean = Number(arr.pop())
         const bean = data?.items[newBean]
         beanArr.push(bean)
@@ -92,6 +96,7 @@ export function HardBeanQuiz() {
   function handleClick(bean: Beans) {
     console.log(bean.imageUrl)
     if (bean.imageUrl === chosenBean?.imageUrl) {
+      setResult(puns[getRandomNumber(0, puns.length - 1)])
       setGame(true)
       setScore((prev) => prev + 1)
       console.log(score)
@@ -103,6 +108,7 @@ export function HardBeanQuiz() {
   if (game === true) {
     return (
       <>
+        <h1 className="hardmode">WOW, SO HARD!!!</h1>
         <Link to="/">
           <button className="homeButton">
             <img
@@ -112,7 +118,6 @@ export function HardBeanQuiz() {
             />
           </button>
         </Link>
-        <h1>WOW SO HARD</h1>
         <h1 className="chosen">{chosenBeanName}</h1>
         <div className="image-container">
           {quizBeanArr.map((bean, i) => (
@@ -121,6 +126,7 @@ export function HardBeanQuiz() {
             </button>
           ))}
         </div>
+        <h1>{result}</h1>
       </>
     )
   } else {

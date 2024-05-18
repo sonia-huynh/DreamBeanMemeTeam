@@ -8,6 +8,13 @@ body {
   margin-top: 120px;
 }
 
+.hardmode {
+  position: relative;
+  margin-top: -60px;
+  font-size: 30pt;
+  color: #fc3682e7;
+}
+
 .chosen {
   font-size: 70pt;
 }
