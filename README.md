@@ -2,6 +2,10 @@
 
 # DreamBeanMemeTeam 
 
+
+https://github.com/sonia-huynh/DreamBeanMemeTeam/assets/155363911/1abea2a5-3015-4ecf-9ae0-816efc121950
+
+
 During my bootcamp, we had Friday Group Projects where we create a one-day project together as a team of four people. This Friday Group Project focused on building an app using an external api, so my team and I created a fun trivia game using the Jelly Belly Api where we randomised the names of the jelly beans and their jelly bean image so the player has to guess which jelly bean image corresponds to the given jelly bean name. 
 
 ### ⚙️ Languages, Tools & Technologies:
