@@ -2,9 +2,9 @@ import { useQuery } from '@tanstack/react-query'
 import { fetchAllJellyBeans, fetchJellyBean } from '../apis/jellybean'
 import { getRandomNumber } from '../modules/random-number'
 import { Link } from 'react-router-dom'
-import play from '../../public/images/start.mp3'
+import play from '/images/start.mp3'
 import LoadingSpinner from './LoadingSpinner'
-import wow from '../../public/images/wow.mp3'
+import wow from '/images/wow.mp3'
 
 export function HomeBean() {
   const hardmode = new Audio(wow)
